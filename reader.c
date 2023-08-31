@@ -113,6 +113,7 @@ int main(int argc, char const *argv[]) {
     int i;
 
     wiegandInit(PIN_0, PIN_1);
+    char room[] = "LIBC5";
 
     while (1) {
         int bitLen = wiegandGetPendingBitCount();
@@ -134,8 +135,8 @@ int main(int argc, char const *argv[]) {
                 }
             }
 
-            printf("%lu, %d\n", (unsigned long)time(NULL), code);
-            fprintf(fp, "%lu, %d\n", (unsigned long)time(NULL), code);
+            printf("%s, %lu, %d\n", room, (unsigned long)time(NULL), code);
+            fprintf(fp, "%s, %lu, %d\n", room, (unsigned long)time(NULL), code);
             fclose(fp);
         }
     }
