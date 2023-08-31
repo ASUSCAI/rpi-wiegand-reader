@@ -4,7 +4,7 @@
 
 // #define _POSIX_C_SOURCE 200809L
 
-#include <curl/curl.h>
+// #include <curl/curl.h>
 #include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -105,10 +105,10 @@ char* ULL_to_binary(unsigned long long k) {
 
 
 int main(int argc, char const *argv[]) {
-    CURL *handle = curl_easy_init();
+    // CURL *handle = curl_easy_init();
 
-    struct curl_slist *headers = NULL;
-    headers = curl_slist_append(headers, "Content-Type: application/json");
+    // struct curl_slist *headers = NULL;
+    // headers = curl_slist_append(headers, "Content-Type: application/json");
 
     int i;
 
@@ -125,7 +125,6 @@ int main(int argc, char const *argv[]) {
             FILE *fp;
             fp = fopen("output", "a");
 
-
             char timeStr[Max_Digits + sizeof(char)];
             sprintf(timeStr, "%lu", (unsigned long)time(NULL));
             printf("%lu ", (unsigned long)time(NULL));
@@ -134,14 +133,6 @@ int main(int argc, char const *argv[]) {
             printf("Read %d bits (%d bytes): %s", bitLen, bytes, ULL_to_binary(data));
             fprintf(fp, "Read %d bits (%d bytes): %s ", bitLen, bytes, ULL_to_binary(data));
 
-            // char* dataStr = ULL_to_binary(data);
-            // printf("%s\n", dataStr);
-            // fprintf(fp, "%s\n", dataStr);
-            // for (int i = 14; i <= 33; i++) {
-                // printf("%c", dataStr[i]);
-            // }
-            // printf("\n");
-            
             unsigned long long val;
             int code = 0;
     
@@ -157,31 +148,11 @@ int main(int argc, char const *argv[]) {
             char codeStr[Max_Digits + sizeof(char)];
             sprintf(codeStr, "%d", code);
 
-            char jsonData[256];
-            strcpy(jsonData, "{\"room\": \"");
-            strcat(jsonData, "COOR170");
-            strcat(jsonData, "\", \"timestamp\": ");
-            strcat(jsonData, timeStr);
-            strcat(jsonData, ", \"sid\": \"");
-            strcat(jsonData, codeStr);
-            strcat(jsonData, "\"}");
-            /* post AttendanceRecord data */
-            curl_easy_setopt(handle, CURLOPT_POSTFIELDS, jsonData);
-            /* set the size of the postfields data */
-            curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, 256);
-            /* pass our list of custom made headers */
-            curl_easy_setopt(handle, CURLOPT_HTTPHEADER, headers);
-            curl_easy_setopt(handle, CURLOPT_URL, "https://api.ams-lti.com/attendance");
-
-            curl_easy_perform(handle); /* post away! */
-
             fp = fopen("output", "a");
             printf("\n");
             fprintf(fp, "\n");
             fclose(fp);
 
-            // makeBeep(200, 1);
         }
     }
-    curl_slist_free_all(headers); /* free the header list */
 }
