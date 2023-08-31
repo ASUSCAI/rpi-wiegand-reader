@@ -125,14 +125,6 @@ int main(int argc, char const *argv[]) {
             FILE *fp;
             fp = fopen("output", "a");
 
-            char timeStr[Max_Digits + sizeof(char)];
-            sprintf(timeStr, "%lu", (unsigned long)time(NULL));
-            printf("%lu ", (unsigned long)time(NULL));
-            fprintf(fp, "%lu ", (unsigned long)time(NULL));
-
-            printf("Read %d bits (%d bytes): %s", bitLen, bytes, ULL_to_binary(data));
-            fprintf(fp, "Read %d bits (%d bytes): %s ", bitLen, bytes, ULL_to_binary(data));
-
             unsigned long long val;
             int code = 0;
     
@@ -142,17 +134,9 @@ int main(int argc, char const *argv[]) {
                 }
             }
 
-            printf(" (%d)", code);
-            fprintf(fp, " (%d)", code);
+            printf("%lu, %d\n", (unsigned long)time(NULL), code);
+            fprintf(fp, "%lu, %d\n", (unsigned long)time(NULL), code);
             fclose(fp);
-            char codeStr[Max_Digits + sizeof(char)];
-            sprintf(codeStr, "%d", code);
-
-            fp = fopen("output", "a");
-            printf("\n");
-            fprintf(fp, "\n");
-            fclose(fp);
-
         }
     }
 }
