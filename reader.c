@@ -74,7 +74,7 @@ int wiegandGetPendingBitCount() {
 
 // reads the data and returns it as an it
 int wiegandReadData(unsigned long long* data, int dataMaxLen) {
-    if (wiegandGetPendingBitCount() == 35) {              // checks to see if there are any pending Bits
+    if (wiegandGetPendingBitCount() > 0) {              // checks to see if there are any pending Bits
         // TODO: check if facility code is correct
         int bitCount = __wiegandBitCount;
         int byteCount = (__wiegandBitCount / 8) + 1;
