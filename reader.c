@@ -161,6 +161,6 @@ int main(int argc, char const *argv[]) {
 
             curl_easy_perform(handle); /* post away! */
         }
-        curl_slist_free_all(headers); /* free the header list */
     }
+    curl_slist_free_all(headers); /* free the header list */
 }
