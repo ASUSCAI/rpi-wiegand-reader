@@ -136,7 +136,7 @@ int main(int argc, char const *argv[]) {
             }
 
             printf("%s, %lu, %d\n", room, (unsigned long)time(NULL), code);
-            fprintf(fp, "%s, %lu, %d\n", room, (unsigned long)time(NULL), code);
+            fprintf(fp, "%s,%lu,%d\n", room, (unsigned long)time(NULL), code);
             fclose(fp);
         }
     }
